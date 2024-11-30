@@ -25,6 +25,9 @@ public class DataManager : MonoBehaviour
             itemButton.ItemImage = item.ItemImage;
             itemButton.Item3DModel = item.Item3DModel;
             itemButton.name = item.ItemName;
+            // Debug para verificar que los datos están siendo asignados correctamente
+        Debug.Log($"Nombre: {item.ItemName}, Descripción: {item.ItemDescription}, Imagen: {item.ItemImage}, Modelo: {item.Item3DModel}");
+    
         }
 
         GameManager.instance.OnItemsMenu -= CreateButtons;
