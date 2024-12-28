@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public event Action OnARPosition;
 
     public static GameManager instance;
+    private GameObject currentModel; 
     // private bool isModelApproved = false;
     private void Awake()
     {
@@ -93,5 +94,77 @@ public class GameManager : MonoBehaviour
             return false;
         }
     }
+    public void SetCurrentModel(GameObject model)
+    {
+        if (model == null)
+        {
+            Debug.LogError("SetCurrentModel fue llamado con un modelo nulo.");
+            return;
+        }
 
+        currentModel = model;
+        Debug.Log($"[GameManager] Modelo actual establecido: {currentModel.name}");
+    }
+    public void EnableMoveMode()
+    {
+        if (currentModel != null)
+        {
+            var modelController = currentModel.GetComponent<ModelTouchRotation>();
+            if (modelController != null)
+            {
+                modelController.EnableMoveMode();
+                Debug.Log("Modo mover activado para el modelo actual.");
+            }
+            else
+            {
+                Debug.LogError("El modelo actual no tiene el componente ModelTouchRotation.");
+            }
+        }
+        else
+        {
+            Debug.LogWarning("No hay modelo activo para habilitar el modo mover.");
+        }
+    }
+
+    public void EnableRotateMode()
+    {
+        if (currentModel != null)
+        {
+            var modelController = currentModel.GetComponent<ModelTouchRotation>();
+            if (modelController != null)
+            {
+                modelController.EnableRotateMode();
+                Debug.Log("Modo rotar activado para el modelo actual.");
+            }
+            else
+            {
+                Debug.LogError("El modelo actual no tiene el componente ModelTouchRotation.");
+            }
+        }
+        else
+        {
+            Debug.LogWarning("No hay modelo activo para habilitar el modo rotar.");
+        }
+    }
+
+    public void DisableAllModes()
+    {
+        if (currentModel != null)
+        {
+            var modelController = currentModel.GetComponent<ModelTouchRotation>();
+            if (modelController != null)
+            {
+                modelController.DisableAllModes();
+                Debug.Log("Todos los modos deshabilitados para el modelo actual.");
+            }
+            else
+            {
+                Debug.LogError("El modelo actual no tiene el componente ModelTouchRotation.");
+            }
+        }
+        else
+        {
+            Debug.LogWarning("No hay modelo activo para deshabilitar los modos.");
+        }
+    }
 }
