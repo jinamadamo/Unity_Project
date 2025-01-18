@@ -103,6 +103,7 @@ public class GameManager : MonoBehaviour
         }
 
         currentModel = model;
+        currentModel.transform.localScale = Vector3.one * 0.1f;
         Debug.Log($"[GameManager] Modelo actual establecido: {currentModel.name}");
     }
     public void EnableMoveMode()
@@ -165,6 +166,40 @@ public class GameManager : MonoBehaviour
         else
         {
             Debug.LogWarning("No hay modelo activo para deshabilitar los modos.");
+        }
+    }
+
+    public void EnlargeModel()
+    {
+        if (currentModel != null)
+        {
+            Debug.LogWarning("Boton Para Agrandar El Modelo Pulsado.");
+            Vector3 newScale = currentModel.transform.localScale + Vector3.one * 0.01f;
+            if(newScale.x <= 3.0f && newScale.y <= 3.0f && newScale.z <= 3.0f)
+            {
+                currentModel.transform.localScale = newScale;
+            }
+        }
+        else
+        {
+            Debug.LogWarning("No hay modelo activo para escalar.");
+        }
+    }
+
+    public void ShrinkModel()
+    {
+        if (currentModel != null)
+        {
+            Debug.LogWarning("Boton Para Encoger El Modelo Pulsado.");
+            Vector3 newScale = currentModel.transform.localScale - Vector3.one * 0.01f;
+            if(newScale.x >= 0.01f && newScale.y >= 0.01f && newScale.z >= 0.01f)
+            {
+                currentModel.transform.localScale = newScale;
+            }
+        }
+        else
+        {
+            Debug.LogWarning("No hay modelo activo para escalar.");
         }
     }
 }
