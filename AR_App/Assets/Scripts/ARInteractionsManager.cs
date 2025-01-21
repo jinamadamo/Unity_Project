@@ -23,7 +23,7 @@ public class ARInteractionsManager : MonoBehaviour
                 item3DModel = value;
 
                 // Calcular la posición frente a la cámara
-                Vector3 cameraForward = arCamera.transform.forward;
+               /*Vector3 cameraForward = arCamera.transform.forward;
                 Vector3 cameraPosition = arCamera.transform.position;
 
                 // Ajustar la posición a una distancia fija
@@ -32,7 +32,7 @@ public class ARInteractionsManager : MonoBehaviour
 
                 // Asignar la posición y orientación
                 item3DModel.transform.position = positionInFrontOfCamera;
-                item3DModel.transform.rotation = Quaternion.LookRotation(cameraForward); 
+                item3DModel.transform.rotation = Quaternion.LookRotation(cameraForward); */
 
                 // Agregar el script de rotación táctil al modelo
                 item3DModel.AddComponent<ModelTouchRotation>();
@@ -56,6 +56,20 @@ public class ARInteractionsManager : MonoBehaviour
 
         // Registrar al evento del menú principal para limpiar el modelo actual
       //  GameManager.instance.OnMainMenu += ResetItemPosition;
+    //   ResetCameraPosition();
+    }
+    public void ResetCameraPosition()
+    {
+       /* if (arCamera != null)
+        {
+            arCamera.transform.position = Vector3.zero;
+            arCamera.transform.rotation = Quaternion.identity; // Opcional: reinicia la rotación también
+            Debug.Log("La posición de la cámara ha sido reiniciada a (0,0,0).");
+        }
+        else
+        {
+            Debug.LogError("No se asignó una cámara AR en el inspector.");
+        }*/
     }
 
     private void ResetItemPosition()

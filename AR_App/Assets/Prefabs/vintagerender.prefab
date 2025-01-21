@@ -614,7 +614,7 @@ GameObject:
   - component: {fileID: 942297845633580684}
   - component: {fileID: 7083374761630253351}
   m_Layer: 0
-  m_Name: vintage racing car
+  m_Name: vintagerender
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

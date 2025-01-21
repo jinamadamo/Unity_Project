@@ -4,7 +4,8 @@ using UnityEngine.InputSystem;
 public class ModelTouchRotation : MonoBehaviour
 {
     public float rotationSpeed = 100f;
-    public float moveSpeed = 0.01f;
+    public float autoRotationSpeed = 100f;
+    public float moveSpeed = 0.05f;
 
     private bool isDragging = false;
     private Vector2 lastTouchPosition;
@@ -12,6 +13,7 @@ public class ModelTouchRotation : MonoBehaviour
     // Control de habilitación
     private bool isMovingEnabled = false; // Controla si mover está habilitado
     private bool isRotatingEnabled = false; // Controla si rotar está habilitado
+    //private bool isAutoRotateEnabled = false;
 
     private void Update()
     {
@@ -30,12 +32,14 @@ public class ModelTouchRotation : MonoBehaviour
             if (isMovingEnabled)
             {
                 Debug.Log($"[Update] Movimiento habilitado. Llamando a MoveModelToMouse.");
-                MoveModelToMouse(currentMousePosition);
+              //  MoveModelToMouse(currentMousePosition);
+               MoveModel(new Vector3(delta.x, delta.y, 0) * moveSpeed * Time.deltaTime);
             }
             else if (isRotatingEnabled)
             {
                 Debug.Log($"[Update] Rotación habilitada. Llamando a RotateModel.");
-                RotateModel(delta.x);
+               // RotateModel(delta.x);
+               RotateModelYAxis();
             }
 
             lastTouchPosition = currentMousePosition;
@@ -51,16 +55,28 @@ public class ModelTouchRotation : MonoBehaviour
             if (isMovingEnabled)
             {
                 Debug.Log($"[Update] Movimiento habilitado en Touchscreen. Llamando a MoveModelToMouse.");
-                MoveModelToMouse(touchPosition);
+               //MoveModelToMouse(touchPosition);
+               // MoveModel(new Vector3(touchDelta.x, touchDelta.y, 0) * moveSpeed * Time.deltaTime);
             }
             else if (isRotatingEnabled)
             {
                 Debug.Log($"[Update] Rotación habilitada en Touchscreen. Llamando a RotateModel.");
                 Vector2 touchDelta = Touchscreen.current.primaryTouch.delta.ReadValue();
-                RotateModel(touchDelta.x);
+                RotateModelYAxis();
             }
         }
     }
+     private void RotateModelYAxis()
+    {
+        // Rotar continuamente el modelo en su eje Y
+        transform.Rotate(0, autoRotationSpeed * Time.deltaTime, 0, Space.World);
+    }
+      public void MoveModel(Vector3 deltaPosition)
+    {
+        Debug.Log($"[MoveModel] Moviendo modelo con deltaPosition: {deltaPosition}");
+        transform.position += deltaPosition; // Aplica el desplazamiento al modelo
+    }
+
 
     public void RotateModel(float deltaX)
     {

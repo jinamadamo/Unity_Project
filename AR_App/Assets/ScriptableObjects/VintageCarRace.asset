@@ -15,5 +15,5 @@ MonoBehaviour:
   ItemName: VintageCar
   ItemImage: {fileID: 21300000, guid: d97a7c3e3ffaa3e4b80e3013505d950b, type: 3}
   ItemDescription: Model
-  Item3DModel: {fileID: 1694433201122572302, guid: ef14e5e99891dc54f9af66d74dfafea9,
+  Item3DModel: {fileID: 5134079579598507135, guid: 296ff49a03ce82f48ac01353d5b289f3,
     type: 3}
