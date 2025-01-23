@@ -13,7 +13,6 @@ public class ModelTouchRotation : MonoBehaviour
     // Control de habilitación
     private bool isMovingEnabled = false; // Controla si mover está habilitado
     private bool isRotatingEnabled = false; // Controla si rotar está habilitado
-    //private bool isAutoRotateEnabled = false;
 
     private void Update()
     {
