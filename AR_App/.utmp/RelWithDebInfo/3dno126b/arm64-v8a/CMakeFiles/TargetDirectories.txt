@@ -1,0 +1,5 @@
+C:/Users/Usuario/Desktop/DAMO/Project/Unity_Project/AR_App/.utmp/RelWithDebInfo/3dno126b/arm64-v8a/CMakeFiles/edit_cache.dir
+C:/Users/Usuario/Desktop/DAMO/Project/Unity_Project/AR_App/.utmp/RelWithDebInfo/3dno126b/arm64-v8a/CMakeFiles/rebuild_cache.dir
+C:/Users/Usuario/Desktop/DAMO/Project/Unity_Project/AR_App/.utmp/RelWithDebInfo/3dno126b/arm64-v8a/GameActivity/CMakeFiles/game.dir
+C:/Users/Usuario/Desktop/DAMO/Project/Unity_Project/AR_App/.utmp/RelWithDebInfo/3dno126b/arm64-v8a/GameActivity/CMakeFiles/edit_cache.dir
+C:/Users/Usuario/Desktop/DAMO/Project/Unity_Project/AR_App/.utmp/RelWithDebInfo/3dno126b/arm64-v8a/GameActivity/CMakeFiles/rebuild_cache.dir

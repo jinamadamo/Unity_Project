@@ -300,7 +300,8 @@ public class GameManager : MonoBehaviour
         {
             Debug.LogWarning("Boton Para Agrandar El Modelo Pulsado.");
            // Debug.Log($"[ShrinkModel] Tamaño actual del modelo: {currentModel.transform.localScale}");
-            Vector3 newScale = currentModel.transform.localScale + Vector3.one * 0.1f;
+            //Vector3 newScale = currentModel.transform.localScale + Vector3.one * 0.1f;
+            Vector3 newScale = currentModel.transform.localScale * 1.2f;
             if(newScale.x <= 15.0f && newScale.y <= 15.0f && newScale.z <= 15.0f)
             {
                 currentModel.transform.localScale = newScale;
@@ -332,29 +333,30 @@ public class GameManager : MonoBehaviour
         }
     }*/
     public void ShrinkModel()
-{
-    if (currentModel != null)
     {
-        Debug.LogWarning("Botón para encoger el modelo pulsado.");
-        
-        // Calculamos el nuevo tamaño
-        Vector3 newScale = currentModel.transform.localScale - Vector3.one * 0.1f;
-
-        // Verificamos si el nuevo tamaño cumple con los límites mínimos
-        if (newScale.x >= 0.01f && newScale.y >= 0.01f && newScale.z >= 0.01f)
+        if (currentModel != null)
         {
-            currentModel.transform.localScale = newScale;
-            Debug.Log($"Nuevo tamaño del modelo: {currentModel.transform.localScale}");
+            Debug.LogWarning("Botón para encoger el modelo pulsado.");
+            
+            // Calculamos el nuevo tamaño
+            //Vector3 newScale = currentModel.transform.localScale - Vector3.one * 0.1f;
+            Vector3 newScale = currentModel.transform.localScale * 0.8f;
+            
+            // Verificamos si el nuevo tamaño cumple con los límites mínimos
+            if (newScale.x >= 0.00001f && newScale.y >= 0.00001f && newScale.z >= 0.00001f)
+            {
+                currentModel.transform.localScale = newScale;
+                Debug.Log($"Nuevo tamaño del modelo: {currentModel.transform.localScale}");
+            }
+            else
+            {
+                Debug.LogWarning($"El modelo no puede encogerse más allá del límite mínimo (0.01). Tamaño actual: {currentModel.transform.localScale}");
+            }
         }
         else
         {
-            Debug.LogWarning($"El modelo no puede encogerse más allá del límite mínimo (0.01). Tamaño actual: {currentModel.transform.localScale}");
+            Debug.LogWarning("No hay modelo activo para encoger.");
         }
     }
-    else
-    {
-        Debug.LogWarning("No hay modelo activo para encoger.");
-    }
-}
 
 }

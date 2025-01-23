@@ -31,14 +31,11 @@ public class ModelTouchRotation : MonoBehaviour
             // Verifica cuál funcionalidad está habilitada
             if (isMovingEnabled)
             {
-                Debug.Log($"[Update] Movimiento habilitado. Llamando a MoveModelToMouse.");
-              //  MoveModelToMouse(currentMousePosition);
-               MoveModel(new Vector3(delta.x, delta.y, 0) * moveSpeed * Time.deltaTime);
+                float zDelta = Mouse.current.scroll.ReadValue().y * Time.deltaTime * 10000.0f; // Movimiento en Z con la rueda del mouse
+                MoveModel(new Vector3(delta.x, delta.y, zDelta) * moveSpeed * Time.deltaTime);
             }
             else if (isRotatingEnabled)
             {
-                Debug.Log($"[Update] Rotación habilitada. Llamando a RotateModel.");
-               // RotateModel(delta.x);
                RotateModelYAxis();
             }
 
@@ -48,9 +45,27 @@ public class ModelTouchRotation : MonoBehaviour
         {
             isDragging = false;
         }
+        else if (Touchscreen.current != null && Touchscreen.current.primaryTouch.press.isPressed) {
+            Vector2 currentTouchPosition = Touchscreen.current.primaryTouch.position.ReadValue();
 
+            if (!isDragging)
+            {
+                isDragging = true;
+                lastTouchPosition = currentTouchPosition;
+            }
+
+            Vector2 delta = currentTouchPosition - lastTouchPosition;
+
+            // Verifica cuál funcionalidad está habilitada
+            if (isMovingEnabled) MoveModel(new Vector3(delta.x, delta.y, 0) * moveSpeed * Time.deltaTime);
+            else if (isRotatingEnabled) RotateModelYAxis();
+            lastTouchPosition = currentTouchPosition;
+        }
+
+        /*
         if (Touchscreen.current != null && Touchscreen.current.primaryTouch.press.isPressed)
         {
+            
             Vector2 touchPosition = Touchscreen.current.primaryTouch.position.ReadValue();
             if (isMovingEnabled)
             {
@@ -64,7 +79,11 @@ public class ModelTouchRotation : MonoBehaviour
                 Vector2 touchDelta = Touchscreen.current.primaryTouch.delta.ReadValue();
                 RotateModelYAxis();
             }
+            
+            
         }
+        */
+        
     }
      private void RotateModelYAxis()
     {
