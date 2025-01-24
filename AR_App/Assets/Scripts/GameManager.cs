@@ -359,4 +359,31 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void RotateModelClockwise()
+    {
+        if (currentModel != null)
+        {
+            // Rotar el modelo en el eje Y en sentido horario
+            currentModel.transform.Rotate(0, 15f, 0); // Ajusta el ángulo de rotación según sea necesario
+            Debug.Log($"El modelo '{currentModel.name}' ha sido rotado en sentido horario.");
+        }
+        else
+        {
+            Debug.LogWarning("No hay modelo activo para rotar.");
+        }
+    }
+
+    public void RotateModelCounterClockwise()
+    {
+        if (currentModel != null)
+        {
+            // Rotar el modelo en el eje Y en sentido antihorario
+            currentModel.transform.Rotate(0, -15f, 0); // Ajusta el ángulo de rotación según sea necesario
+            Debug.Log($"El modelo '{currentModel.name}' ha sido rotado en sentido antihorario.");
+        }
+        else
+        {
+            Debug.LogWarning("No hay modelo activo para rotar.");
+        }
+    }
 }
